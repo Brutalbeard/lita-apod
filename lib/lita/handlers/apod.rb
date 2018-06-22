@@ -3,7 +3,7 @@ module Lita
     class Apod < Handler
 
       route(%r{^apod\?$}i, command: true, help: {
-        "apod" => "Gives you a RANDOM pretty picture! Pulled random from the NASA Picture of the Day. https://apod.nasa.gov/"
+        "apod?" => "Gives you a RANDOM pretty picture! Pulled random from the NASA Picture of the Day. https://apod.nasa.gov/"
       }) do |response|
 
         rando = Time.at(rand((Time.now - (60*60*24*365*5))..Time.now)).strftime('%Y-%m-%d')

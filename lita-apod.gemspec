@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-apod"
-  spec.version       = "0.1.0"
+  spec.version       = "0.3.0"
   spec.authors       = "John Celoria"
   spec.email         = "jceloria@gmail.com"
   spec.description   = "Pulls a picture using the NASA APOD (astronomy picture of the day) API endpoint"
