@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.email         = "jceloria@gmail.com"
   spec.description   = "Pulls a picture using the NASA APOD (astronomy picture of the day) API endpoint"
   spec.summary       = "NASA Space Pictures"
-  spec.homepage      = "https://github.com/Brutalbeard"
+  spec.homepage      = "https://github.com/Brutalbeard/lita-apod"
   spec.license       = "MIT"
   spec.metadata      = { "lita_plugin_type" => "handler" }
 

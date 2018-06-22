@@ -12,8 +12,8 @@ gem "lita-apod"
 
 ## Configuration
 
-No configuration necessary! NASA gives their API away!
+No configuration necessary! NASA gives their API away for free!!
 
 ## Usage
 
-Once installed, ```Lita: apod```
+Once installed, ```Lita: apod``` or ```Lita: apod?```
