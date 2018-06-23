@@ -2,6 +2,8 @@ module Lita
   module Handlers
     class Apod < Handler
 
+      config :apod_api_key
+
       route(%r{^apod\?$}i, command: true, help: {
         "apod?" => "Gives you a RANDOM pretty picture! Pulled random from the NASA Picture of the Day. https://apod.nasa.gov/"
       }) do |response|
@@ -10,7 +12,7 @@ module Lita
 
         messageBody = ""
 
-        res = http.get("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=#{rando}")
+        res = http.get("https://api.nasa.gov/planetary/apod?api_key=#{config.apod_api_key}&date=#{rando}")
 
         object = MultiJson.load(res.body)
 
@@ -27,7 +29,7 @@ module Lita
 
         messageBody = ""
 
-        res = http.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+        res = http.get("https://api.nasa.gov/planetary/apod?api_key=#{config.apod_api_key}")
 
         object = MultiJson.load(res.body)
 
