@@ -16,6 +16,14 @@ module Lita
 
         object = MultiJson.load(res.body)
 
+        messageBody << object['title'] + "\n"
+
+        if !object['copyright'].nil?
+          messageBody << "Image Credit: " + object['copyright']
+        end
+
+        messageBody << "\n\n"
+
         messageBody << object['hdurl'] + "\n"
         messageBody << object['explanation']
 
@@ -33,6 +41,14 @@ module Lita
 
         object = MultiJson.load(res.body)
 
+        messageBody << object['title']
+
+        if !object['copyright'].nil?
+          messageBody << "Image Credit: " + object['copyright']
+        end
+
+        messageBody << "\n\n"
+        
         messageBody << object['hdurl'] + "\n"
         messageBody << object['explanation']
 
