@@ -13,15 +13,33 @@ module Lita
 
         object = MultiJson.load(res.body)
 
-        # uses the discordrb library to send an embedded image. very pretty
-        robot.chat_service.channel(response.room.id).send_embed do |embed|
-          embed.title = object['title']
-          embed.description = object['explanation']
-          embed.timestamp = Time.new(object['date']) # or whatever Time
-          embed.image = { url: object['hdurl'] }
-          embed.footer = object['copyright'] ? { text: 'Credit: ' << object['copyright'] } : nil
-          embed.color = '00CC00'
+        if(robot.adapters.has_key?(:discord_oauth))
+          # uses the discordrb library to send an embedded image. very pretty
+          robot.chat_service.channel(response.room.id).send_embed do |embed|
+            embed.title = object['title']
+            embed.description = object['explanation']
+            embed.timestamp = Time.new(object['date']) # or whatever Time
+            embed.image = { url: object['hdurl'] }
+            embed.footer = object['copyright'] ? { text: 'Credit: ' << object['copyright'] } : nil
+            embed.color = '00CC00'
+          end
+        else
+          messageBody = ''
+
+          messageBody << object['title'] + "\n"
+
+          if !object['copyright'].nil?
+            messageBody << "Image Credit: " + object['copyright']
+          end
+
+          messageBody << "\n\n"
+
+          messageBody << object['hdurl'] + "\n"
+          messageBody << object['explanation']
+
+          response.reply(messageBody)
         end
+
       end
 
       route(/^apod$/i, command: true, help: {
@@ -32,14 +50,31 @@ module Lita
 
         object = MultiJson.load(res.body)
 
-        # uses the discordrb library to send an embedded image. very pretty
-        robot.chat_service.channel(response.room.id).send_embed do |embed|
-          embed.title = object['title']
-          embed.description = object['explanation']
-          embed.timestamp = Time.new(object['date']) # or whatever Time
-          embed.image = { url: object['hdurl'] }
-          embed.footer = object['copyright'] ? { text: 'Credit: ' << object['copyright'] } : nil
-          embed.color = '00CC00'
+        if(robot.adapters.has_key?(:discord_oauth))
+          # uses the discordrb library to send an embedded image. very pretty
+          robot.chat_service.channel(response.room.id).send_embed do |embed|
+            embed.title = object['title']
+            embed.description = object['explanation']
+            embed.timestamp = Time.new(object['date']) # or whatever Time
+            embed.image = { url: object['hdurl'] }
+            embed.footer = object['copyright'] ? { text: 'Credit: ' << object['copyright'] } : nil
+            embed.color = '00CC00'
+          end
+        else
+          messageBody = ''
+
+          messageBody << object['title'] + "\n"
+
+          if !object['copyright'].nil?
+            messageBody << "Image Credit: " + object['copyright']
+          end
+
+          messageBody << "\n\n"
+
+          messageBody << object['hdurl'] + "\n"
+          messageBody << object['explanation']
+
+          response.reply(messageBody)
         end
       end
 
